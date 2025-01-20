@@ -41,6 +41,7 @@ class UserController {
   }
 
   async login(req, res, next) {
+    console.log('login')
     try {
       const { email, password } = req.body;
       const userData = await userService.login(email, password);
