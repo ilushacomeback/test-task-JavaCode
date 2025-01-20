@@ -15,18 +15,18 @@ app.use(cookieParser());
 app.use('/api', router);
 app.use(errorMiddleware);
 
-if (process.env.NODE_ENV !== 'production') {
-  const start = () => {
-    try {
-      app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
-      });
-    } catch (e) {
-      console.error('Error starting server:', e);
-    }
-  };
+// if (process.env.NODE_ENV !== 'production') {
+//   const start = () => {
+//     try {
+//       app.listen(PORT, () => {
+//         console.log(`Server is running on http://localhost:${PORT}`);
+//       });
+//     } catch (e) {
+//       console.error('Error starting server:', e);
+//     }
+//   };
 
-  start();
-}
+//   start();
+// }
 
 module.exports = app;
