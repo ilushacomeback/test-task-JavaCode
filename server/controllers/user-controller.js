@@ -7,6 +7,7 @@ class UserController {
   async register(req, res, next) {
     try {
       const errors = validationResult(req);
+      console.log('eeee', errors);
       if (!errors.isEmpty()) {
         const error = errors.array().reduce((acc, { path }) => {
           console.log(path);
@@ -16,6 +17,9 @@ class UserController {
               break;
             case 'password':
               acc[path] = 'Пароль должен быть от 8 до 32 символов';
+              break;
+            case 'confirmPassword':
+              acc[path] = 'Пароли не совпадают';
               break;
             case 'username':
               acc[path] = 'Имя обязательно';
@@ -41,7 +45,7 @@ class UserController {
   }
 
   async login(req, res, next) {
-    console.log('login')
+    console.log('login');
     try {
       const { email, password } = req.body;
       const userData = await userService.login(email, password);

@@ -64,7 +64,7 @@ export const SignIn = () => {
       <Div>
         <Label htmlFor="password">Пароль</Label>
         <Input
-          type="text"
+          type="password"
           handleOnChange={(e) => setPassword(e.target.value)}
           id="password"
           value={password}

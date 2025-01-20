@@ -7,6 +7,7 @@ interface ResponseError {
   email?: string;
   password?: string;
   username?: string;
+  confirmPassword?: string;
 }
 
 const Div = styled.div`
@@ -26,6 +27,7 @@ export const SignUp = () => {
   const [username, setUserame] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errors, setErrors] = useState<ResponseError>({});
   const [register] = useRegister();
@@ -34,7 +36,7 @@ export const SignUp = () => {
   const handleOnSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true)
-    const response = await register({ email, password, username });
+    const response = await register({ email, password, username, confirmPassword });
     setIsLoading(false)
     if (response.error) {
       setErrors((response?.error as { data: ResponseError })?.data);
@@ -71,13 +73,24 @@ export const SignUp = () => {
       <Div>
         <Label htmlFor="password">Пароль</Label>
         <Input
-          type="text"
+          type="password"
           handleOnChange={(e) => setPassword(e.target.value)}
           id="password"
           value={password}
           style={{ borderColor: errors?.password && 'red' }}
         />
         {errors?.password && <Span>{errors?.password}</Span>}
+      </Div>
+      <Div>
+        <Label htmlFor="confirmPassword">Повторите пароль</Label>
+        <Input
+          type="password"
+          handleOnChange={(e) => setConfirmPassword(e.target.value)}
+          id="confirmPassword"
+          value={confirmPassword}
+          style={{ borderColor: errors?.confirmPassword && 'red' }}
+        />
+        {errors?.confirmPassword && <Span>{errors?.confirmPassword}</Span>}
       </Div>
       <div>
         <Button type="submit" disabled={isLoading}>Зарегистрироваться</Button>
