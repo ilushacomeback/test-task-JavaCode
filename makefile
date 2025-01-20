@@ -1,6 +1,6 @@
 install:
-	cd frontend && make install
+	npm ci
 dev:
-	cd frontend && make dev
+	npm run dev
 build:
-	cd frontend && make build
+	npm run build
