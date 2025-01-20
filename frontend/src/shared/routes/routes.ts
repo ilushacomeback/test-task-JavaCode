@@ -20,7 +20,7 @@ export const staticRoutes: StaticRoutes = {
   signin: '/signin',
 };
 
-const base = 'http://localhost:4000/api';
+const base = '/api';
 
 export const apiRoutes: ApiRoutes = {
   baseUrl: () => base,
